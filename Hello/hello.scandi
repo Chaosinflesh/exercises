@@ -1,0 +1,4 @@
+{stream.writeline writeline}
+{system.stdout out}
+
+"Hello scandi!\n" out writeline
