@@ -1,0 +1,4 @@
+begin
+    Outtext("Hello Simula67!");
+    OutImage
+end
