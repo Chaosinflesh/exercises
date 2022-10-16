@@ -6,6 +6,8 @@ set -e
 SOURCE="${1}"
 TARGET="${SOURCE%.*}"
 EXTENSION="${SOURCE##*.}" # Assumes only a single . in the path.
+FOLDER="${SOURCE%/*}"
+FILE="${TARGET##*/}"
 
 echo "Compiling ${SOURCE} -> ${TARGET}"
 
@@ -37,6 +39,10 @@ case "${EXTENSION}" in
             ./"${TARGET}"
             ;;
 
+    clj)    # Clojure
+            clojure "${SOURCE}"
+            ;;
+
     cobol)  # COBOL
             cobc -x "${SOURCE}" -o "${TARGET}"
             ./"${TARGET}"
@@ -50,6 +56,18 @@ case "${EXTENSION}" in
     cs)     # C#
             mcs -out"${TARGET}"  "${SOURCE}"
             mono "${TARGET}"
+            ;;
+
+    dart)   # Dart
+            dart --disable-analytics run "${SOURCE}"
+            ;;
+
+    elm)    # elm
+            echo "TODO: Figure out how to script elm nicely."
+            ;;
+
+    exs)    # Elixir
+            elixir "${SOURCE}"
             ;;
 
     f95)    # FORTRAN
@@ -81,6 +99,15 @@ case "${EXTENSION}" in
             rhino "${SOURCE}"
             ;;
 
+    kt)     # Kotlin
+            kotlinc "${SOURCE}" -include-runtime -d "${TARGET}.jar"
+            java -jar "${TARGET}.jar"
+            ;;
+
+    kts)    # Kotlin (as script)
+            kotlinc -script "${SOURCE}" -- -d "${FOLDER}"
+            ;;
+
     lisp)   # Lisp
             clisp "${SOURCE}"
             ;;
@@ -102,6 +129,10 @@ case "${EXTENSION}" in
             echo "TODO: Figure out why gm2 libraries are absent on my system."
             ;;
 
+    nim)    # Nim
+            nim c -r --verbosity:0 "${SOURCE}"
+            ;;
+
     pas)    # Pascal
             fpc "${SOURCE}" -o"${TARGET}"
             ./"${TARGET}"
@@ -117,6 +148,10 @@ case "${EXTENSION}" in
 
     pl)     # Prolog
             echo "Use gprolog + TODO: further instructions."
+            ;;
+
+    ps1)    # Powershell
+            pwsh "${SOURCE}"
             ;;
 
     py)     # Python
@@ -137,6 +172,11 @@ case "${EXTENSION}" in
             ./"${TARGET}"
             ;;
 
+    scala)  # Scala
+            scalac -d "${FOLDER}" "${SOURCE}"
+            scala -classpath "${FOLDER}" "${FILE}"
+            ;;
+
     scandi) # scandi
             echo "TODO: Finish LLVM implementation before running me!"
             ;;
@@ -155,6 +195,10 @@ case "${EXTENSION}" in
 
     st)     # SmallTalk
             gst "${SOURCE}"
+            ;;
+
+    swift)  # Swift (as script)
+            PATH="${SWIFT_PATH}" swift "${SOURCE}"
             ;;
 
     ts)     # TypeScript

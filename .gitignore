@@ -3,3 +3,5 @@ a.out
 .apl*
 *.ali
 *.gen.js
+*.class
+*.jar
