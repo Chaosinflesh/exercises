@@ -2,6 +2,21 @@
 # Mega-build script for single-file compilations.
 set -e
 
+# Not yet added (TODO means not yet tested, or noted problem).
+#   ASP .NET
+#   Carbon
+#   Delphi
+#   Hack
+#   Mathematica
+#   MATLAB
+#   Obj-C
+#   Ocaml
+#   scratch
+#   Starlark / Bazel
+#   VB .NET
+#   VB Script
+#   Visual Basic 6.0
+
 # Assumes the existence of a single . in the path.
 SOURCE="${1}"
 TARGET="${SOURCE%.*}"
@@ -34,6 +49,10 @@ case "${EXTENSION}" in
             ./"${TARGET}"
             ;;
 
+    bf)     # Brainf*ck
+            echo "TODO: beef"
+            ;;
+
     C)      # C
             clang -Wall -Werror -pedantic "${SOURCE}" -o "${TARGET}"
             ./"${TARGET}"
@@ -58,12 +77,20 @@ case "${EXTENSION}" in
             mono "${TARGET}"
             ;;
 
+    d)      # D
+            echo "TODO: gdmd"
+            ;;
+
     dart)   # Dart
             dart --disable-analytics run "${SOURCE}"
             ;;
 
     elm)    # elm
             echo "TODO: Figure out how to script elm nicely."
+            ;;
+
+    erl)    # Erlang
+            echo "TODO: erl"
             ;;
 
     exs)    # Elixir
@@ -79,12 +106,20 @@ case "${EXTENSION}" in
             gforth "${SOURCE}"
             ;;
 
+    fs)     # F#
+            echo "TODO: Remember how to run this!"
+            ;;
+
     go)     # go
             go run "${SOURCE}"
             ;;
 
     groovy) # groovy
             groovy "${SOURCE}"
+            ;;
+
+    hs)     # Haskell
+            echo "TODO: ghc"
             ;;
 
     java)   # Java
@@ -120,6 +155,14 @@ case "${EXTENSION}" in
             lua "${SOURCE}"
             ;;
 
+    m)      # Octave
+            echo "TODO: octave"
+            ;;
+
+    mir)    # Miranda
+            echo "TODO: Fix compilation issue (multiple definitions)."
+            ;;
+
     ml)     # ML
             polyc "${SOURCE}" -o "${TARGET}"
             ./"${TARGET}"
@@ -150,12 +193,20 @@ case "${EXTENSION}" in
             echo "Use gprolog + TODO: further instructions."
             ;;
 
+    ps)     # PostScript
+            echo "TODO: gs"
+            ;;
+
     ps1)    # Powershell
             pwsh "${SOURCE}"
             ;;
 
     py)     # Python
             python3 "${SOURCE}"
+            ;;
+
+    r)      # R
+            echo "TODO: r"
             ;;
 
     rb)     # Ruby
@@ -198,7 +249,13 @@ case "${EXTENSION}" in
             ;;
 
     swift)  # Swift (as script)
+            # Note: Swift has it's own ecosystem, so SWIFT_PATH is
+            #       exported separately in .bashrc.
             PATH="${SWIFT_PATH}" swift "${SOURCE}"
+            ;;
+
+    tcl)    # tclsh
+            echo "TODO: tclsh"
             ;;
 
     ts)     # TypeScript
