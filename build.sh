@@ -5,13 +5,19 @@ set -e
 # Not yet added (TODO means not yet tested, or noted problem).
 #   ASP .NET
 #   Carbon
+#   cuda*
 #   Delphi
+#   Eiffel
 #   Hack
 #   Mathematica
 #   MATLAB
 #   Obj-C
 #   Ocaml
+#   OpenCL*
+#   PL/I
+#   QB64
 #   scratch
+#   SNOBOL
 #   Starlark / Bazel
 #   VB .NET
 #   VB Script
@@ -20,7 +26,7 @@ set -e
 # Assumes the existence of a single . in the path.
 SOURCE="${1}"
 TARGET="${SOURCE%.*}"
-EXTENSION="${SOURCE##*.}" # Assumes only a single . in the path.
+EXTENSION="${SOURCE##*.}"
 FOLDER="${SOURCE%/*}"
 FILE="${TARGET##*/}"
 
@@ -106,8 +112,8 @@ case "${EXTENSION}" in
             gforth "${SOURCE}"
             ;;
 
-    fs)     # F#
-            echo "TODO: Remember how to run this!"
+    fsx)    # F#
+            dotnet fsi "${SOURCE}"
             ;;
 
     go)     # go
@@ -166,6 +172,10 @@ case "${EXTENSION}" in
     ml)     # ML
             polyc "${SOURCE}" -o "${TARGET}"
             ./"${TARGET}"
+            ;;
+
+    mm)     # Objective-C++
+            echo "TODO: install ObjC from repo"
             ;;
 
     mod)    # Modula-2
