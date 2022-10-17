@@ -1,0 +1,22 @@
+// Author: Neil Bradley
+// Copyright: Neil Bradley
+// License: All rights reserved.
+
+{stream.writeline writeline}
+{system.stdout out}
+
+$i 0 =
+$j 0 =
+$sum 0 =
+
+\loop
+  sum i +
+  j i <
+    sum j +
+  j i ?<
+    j 5 +
+  i 3 +
+  i 1000 <
+    loop
+
+sum out writeline

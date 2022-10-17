@@ -1,0 +1,30 @@
+` Advent of Code 2015.1: scandi
+`
+` Author: Neil Bradley
+` Copyright: Neil Bradley
+` License: All rights reserved.
+
+{stream.readline readline}
+{stream.writeline writeline}
+{system.stdin in}
+{system.stdout out}
+
+@a
+    $line in readline =
+    $n 0 =
+    $floor 0 =
+    \loop
+        line[n] '(' ?
+            floor 1 +
+        n 1 +
+        n line! ?
+            exit
+        loop
+    \exit
+    floor 2 * line! - out writeline
+
+@b
+    ` TODO
+
+a
+b

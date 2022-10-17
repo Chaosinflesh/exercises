@@ -1,0 +1,30 @@
+` Advent of Code 2021.1: scandi
+`
+` Author: Neil Bradley
+` Copyright: Neil Bradley
+` License: All rights reserved.
+
+{stream.readline readline}
+{stream.writeline writeline}
+{system.stdin in}
+{system.stdout out}
+
+@a
+    $count 0 =
+    $last in readline =
+    \loop
+        $read in readline =
+        read () ?
+            exit
+        read last >
+            count 1 +
+        last read =
+        loop
+    \exit
+    count out writeline
+
+@b
+    ` TODO
+
+a
+b
