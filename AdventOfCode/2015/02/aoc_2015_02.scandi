@@ -4,7 +4,7 @@
 ` Copyright: Neil Bradley
 ` License: All rights reserved.
 
-{math.min min}
+{math.min3 min3}
 {stream.readline readline}
 {stream.writeline writeline}
 {string.split split}
@@ -24,7 +24,7 @@
         $s1 x y * =
         $s2 x z * =
         $s3 y z * =
-        $m s1 s2 min s3 min =
+        $m s1 s2 s3 min3 =
         total s1 s2 + s3 + 2 * m + =
         loop
     \exit

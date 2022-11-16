@@ -5,3 +5,4 @@ a.out
 *.gen.js
 *.class
 *.jar
+AdventOfCode/**/input
